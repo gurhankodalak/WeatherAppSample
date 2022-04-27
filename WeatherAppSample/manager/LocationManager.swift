@@ -58,11 +58,13 @@ final class LocationManager: NSObject {
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        
         if #available(iOS 14.0, *) {
             if manager.authorizationStatus == .authorizedWhenInUse {
                 self.locationManager.requestLocation()
             }
             else {
+                
                 self.locationRequestCompletion?(self.userLocation)
             }
         } else {
