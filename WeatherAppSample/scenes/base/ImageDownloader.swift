@@ -16,19 +16,14 @@ final class ImageDownloader {
     private let provider = MoyaProvider<WeatherApi>()
     
     func getWeatherIcon(code: String, completion: @escaping ((UIImage?)->Void) )  {
-        do {
-            guard let url =  URL(string: "http://openweathermap.org" + "/img/wn/\(code)@2x.png") else {
-                debugPrint("URL error")
-                completion(nil)
-                return
-            }
-            let data = try Data(contentsOf: url)
-            let image = UIImage(data: data)
-            DispatchQueue.main.async {
+        self.provider.request(.getWeatherStatusIcon(iconCode: code)) { result in
+            switch result {
+            case let .success(response):
+                let image = UIImage(data: response.data)
                 completion(image)
+            default:
+                completion(nil)
             }
-        } catch {
-            completion(nil)
         }
     }
     

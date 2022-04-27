@@ -37,7 +37,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="97" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="HB1-e1-GTN"/>
-                                        <constraint firstAttribute="width" secondItem="GfR-vV-Z1T" secondAttribute="height" multiplier="97:50" id="aSR-j1-hpY"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJJ-Or-yvY">

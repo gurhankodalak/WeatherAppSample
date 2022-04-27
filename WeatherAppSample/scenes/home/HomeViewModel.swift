@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import Moya
+import UIKit
 
 final class HomeViewModel {
     private let provider = MoyaProvider<WeatherApi>(plugins: [NetworkLoggerPlugin.verbose])
@@ -70,12 +71,7 @@ final class HomeViewModel {
         var items = [WeatherCurrentModel]()
         if let dataItems = data.hourly {
             for dataItem in dataItems {
-                if let date = dataItem.dt?.getDate() {
-                    if Calendar.current.isDateInToday(date) {
-                        items.append(dataItem)
-                    }
-                }
-                
+                items.append(dataItem)
             }
         }
         return items

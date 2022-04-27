@@ -16,7 +16,14 @@ enum WeatherApi {
 
 extension WeatherApi: TargetType {
     var baseURL: URL {
-        guard let url = URL(string: ApiManager.shared.baseURL) else {
+        var urlString = ApiManager.shared.baseURL
+        switch self {
+        case .getWeatherStatusIcon:
+            urlString = ApiManager.shared.iconURL
+        default:
+            break
+        }
+        guard let url = URL(string: urlString) else {
             preconditionFailure("Error while setting base URL")
         }
         return url
@@ -53,7 +60,7 @@ extension WeatherApi: TargetType {
     var headers: [String : String]? {
         switch self {
         case .getWeatherStatusIcon:
-            return ApiManager.shared.defaultImageHeaders
+            return ApiManager.shared.defaultHeaders
         default:
             return ApiManager.shared.defaultHeaders
         }

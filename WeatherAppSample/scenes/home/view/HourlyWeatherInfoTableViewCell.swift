@@ -16,6 +16,7 @@ class HourlyWeatherInfoTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.collectionView.dataSource = self
+        self.collectionView.delegate = self
         self.containerView.giveCorner(radius: 10)
         // Initialization code
     }
@@ -33,7 +34,7 @@ class HourlyWeatherInfoTableViewCell: UITableViewCell {
 
 }
 
-extension HourlyWeatherInfoTableViewCell: UICollectionViewDataSource {
+extension HourlyWeatherInfoTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HourlyWeatherItemCollectionViewCell", for: indexPath) as? HourlyWeatherItemCollectionViewCell else {
             preconditionFailure("collection view cell dequeue failed")
@@ -44,5 +45,12 @@ extension HourlyWeatherInfoTableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.hourData.count
+    }
+    
+}
+
+extension HourlyWeatherInfoTableViewCell: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: collectionView.frame.height)
     }
 }

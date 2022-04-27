@@ -9,6 +9,7 @@ import Foundation
 
 final class ApiManager {
     var baseURL: String = "https://api.openweathermap.org"
+    var iconURL = "http://openweathermap.org"
     
     static let openWeatherAppId = "9995d7c4b16e3fc416ea329bf641acd5"
     static let shared = ApiManager()
